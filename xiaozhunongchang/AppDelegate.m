@@ -13,13 +13,26 @@
 @end
 
 @implementation AppDelegate
+@synthesize tabBarControl,actionvc,isLogin,thisTishiLabel,nowTabBarViewPage,allTabBarSubViews,userId,userDataDic;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    isLogin=NO;
+    nowTabBarViewPage=0;
+    allTabBarSubViews=[[NSMutableArray alloc]init];
+    userDataDic=[[NSMutableDictionary alloc]init];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
+    tabBarControl=[[TabBarControl alloc]init];
+    actionvc=[[ActionVC alloc]initWithNibName:@"ActionVC" bundle:nil];
+    self.window.rootViewController=actionvc;
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -40,6 +53,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+//禁用横屏
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    //    return UIInterfaceOrientationMaskLandscape;
+    return UIInterfaceOrientationMaskPortrait;
+}
+//root到Tabbarviewcontrol
+-(void)rootTabBarView{
+    self.window.rootViewController=tabBarControl;
+    [self.window bringSubviewToFront:actionvc.view];
 }
 
 @end
