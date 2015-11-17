@@ -61,9 +61,9 @@
     [super layoutSubviews];
     CGFloat Y = self.frame.size.height-1;
     
-    imageV.frame = CGRectMake(0, 0, ScreenWidth, 15);
-    nameLa1.frame = CGRectMake(15, 15, 100, 25);
-    nameLa2.frame = CGRectMake(115, 15, 100, 25);
+    imageV.frame = CGRectMake(0, 0, ScreenWidth, 20);
+    nameLa1.frame = CGRectMake(15, 20, 100, 25);
+    nameLa2.frame = CGRectMake(115, 20, 100, 25);
     brankLa1.frame = CGRectMake(15, 0, 100, 25);
     brankLa2.frame = CGRectMake(115, 0, 100, 25);
     lineLa.frame = CGRectMake(0, Y, ScreenWidth, 1);

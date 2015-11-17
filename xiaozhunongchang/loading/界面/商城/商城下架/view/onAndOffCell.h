@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MSdelegate <NSObject>
+
+- (void)nextPopUpBox;
+
+@end
+
 @interface onAndOffCell : UITableViewCell
 
 
@@ -17,5 +23,7 @@
 @property (nonatomic,strong) UILabel *yieldLa;
 @property (nonatomic,strong) UILabel *priceLa;
 @property (nonatomic,strong) UIButton *button;
+
+@property (nonatomic,assign) id <MSdelegate> MSdelegate;
 
 @end

@@ -65,6 +65,7 @@
     button = [[UIButton alloc] init];
     [button setTitleColor:ZCnongzhuang forState:UIControlStateNormal];
     button.font = [UIFont systemFontOfSize:14];
+    [button addTarget:self action:@selector(buttonAc) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:button];
     
 }
@@ -81,5 +82,12 @@
     button.frame = CGRectMake(ScreenWidth-70, 5, 60, 20);
     lineLa.frame = CGRectMake(0, 119, ScreenWidth, 1);
 }
+
+- (void)buttonAc {
+    
+    [self.MSdelegate nextPopUpBox];
+}
+
+
 
 @end
