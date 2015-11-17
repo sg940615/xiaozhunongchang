@@ -7,7 +7,7 @@
 //
 
 #import "HomePageVC.h"
-
+#import "SignVC.h"
 @interface HomePageVC ()
 
 @end
@@ -16,9 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavRightBtnWithString:@"登陆"];
+    [self setNavRightBtnWithString:@"登录"];
     [self setNavgationTitile];
-    // Do any additional setup after loading the view from its nib.
+    
 }
 - (void)viewWillAppear:(BOOL)animated {
     [self hidenTabBar];
@@ -39,8 +39,16 @@
     titleLab.font = [UIFont systemFontOfSize:15];
     titleLab.center = navTitleView.center;
     [navTitleView addSubview:titleLab];
+    
 
 }
 
+-(void)rightAction{
+    
+    SignVC *Svc = [[SignVC alloc] initWithNibName:@"SignVC" bundle:nil];
+    Svc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:Svc animated:YES];
+    
+}
 
 @end

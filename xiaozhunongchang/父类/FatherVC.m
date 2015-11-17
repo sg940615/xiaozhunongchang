@@ -65,8 +65,8 @@
     UIBarButtonItem *barbtnLeft=[[UIBarButtonItem alloc]init];
     backview=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 50, 36)];
     [backview setBackgroundColor:[UIColor clearColor]];
-    UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(0, (backview.frame.size.height-20.0)/2, 12.0, 20.0)];
-    [imageview setImage:[UIImage imageNamed:@"backimg"]];
+    UIImageView *imageview=[[UIImageView alloc]initWithFrame:CGRectMake(0, (backview.frame.size.height-20.0)/2, 16.0, 20.0)];
+    [imageview setImage:[UIImage imageNamed:@"返回按键_03"]];
     [backview addSubview:imageview];
     [barbtnLeft setCustomView:backview];
     UITapGestureRecognizer *tapges=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(backAction)];
