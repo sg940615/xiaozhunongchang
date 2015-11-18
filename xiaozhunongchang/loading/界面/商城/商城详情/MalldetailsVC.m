@@ -104,6 +104,12 @@
     [orderBT setFont:[UIFont systemFontOfSize:10]];
     [orderBT addTarget:self action:@selector(orderBT) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:orderBT];
+    
+    UIButton *shopImgBT = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-50, ScreenHeight-164, 40, 40)];
+    shopImgBT.backgroundColor = [UIColor clearColor];
+    [shopImgBT setImage:[UIImage imageNamed:@"民间特产详情_07"] forState:UIControlStateNormal];
+    [shopImgBT addTarget:self action:@selector(shopImgBT) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shopImgBT];
 }
 
 #pragma mark -- 设置营养价值
@@ -113,7 +119,7 @@
     view.backgroundColor = [UIColor whiteColor];
     [mainSV addSubview:view];
     
-    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     imageV.image = [UIImage imageNamed:@"民间特产详情_024"];
     imageV.backgroundColor = [UIColor clearColor];
     [view addSubview:imageV];
@@ -127,9 +133,9 @@
     
     CGSize laSize = [ZZStringSize getSizeToString:label.text forFont:[UIFont systemFontOfSize:10] constrainedToSize:CGSizeMake(ScreenWidth-20, 10000) lineBreakMode:NSLineBreakByWordWrapping];
     
-    mainSV.contentSize = CGSizeMake(ScreenWidth, laSize.height+465);
-    view.frame = CGRectMake(0, 420, ScreenWidth, laSize.height+45);
-    label.frame = CGRectMake(10, 30, ScreenWidth-20, laSize.height);
+    mainSV.contentSize = CGSizeMake(ScreenWidth, laSize.height+470);
+    view.frame = CGRectMake(0, 420, ScreenWidth, laSize.height+50);
+    label.frame = CGRectMake(10, 35, ScreenWidth-20, laSize.height);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -138,7 +144,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return 40;
+        return 45;
     }else {
         return 25;
     }
@@ -174,6 +180,10 @@
 }
 
 - (void)orderBT {
+    
+}
+
+- (void)shopImgBT {
     
 }
 

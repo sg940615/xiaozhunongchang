@@ -9,6 +9,8 @@
 #import "FolkDetailsVC.h"
 #import "FolkSeedCell.h"
 #import "BuyOrderVC.h"
+#import "EvaluationCell.h"
+#import "ZZStringSize.h"
 
 @interface FolkDetailsVC () <UITableViewDataSource,UITableViewDelegate>
 {
@@ -16,6 +18,7 @@
     UIView *oneV;
     UITableView *seedTV;
     NSArray *paraArray;
+    UITableView *evaTV;
 }
 @end
 
@@ -35,7 +38,7 @@
     self.title = @"天然蜂蜜";
     
     mainSV = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-104)];
-    mainSV.contentSize = CGSizeMake(ScreenWidth, ScreenHeight*3);
+    mainSV.contentSize = CGSizeMake(ScreenWidth, 1440);
     mainSV.backgroundColor = color(236, 236, 236, 1);
     mainSV.showsVerticalScrollIndicator = NO;
     [self.view addSubview:mainSV];
@@ -136,36 +139,98 @@
 #pragma mark -- 设置累计评价
 - (void)setEvaluation {
     
+    evaTV = [[UITableView alloc] initWithFrame:CGRectMake(0, 1160, ScreenWidth, 280) style:UITableViewStylePlain];
+    evaTV.delegate = self;
+    evaTV.dataSource = self;
+    evaTV.separatorStyle = UITableViewCellSelectionStyleNone;
+    evaTV.showsVerticalScrollIndicator = NO;
+    [mainSV addSubview:evaTV];
+    
+    UIButton *shopImgBT = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth-50, ScreenHeight-174, 40, 40)];
+    shopImgBT.backgroundColor = [UIColor clearColor];
+    [shopImgBT setImage:[UIImage imageNamed:@"民间特产详情_07"] forState:UIControlStateNormal];
+    [shopImgBT addTarget:self action:@selector(shopImgBT) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shopImgBT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return paraArray.count;
+    
+    if (tableView == seedTV) {
+        
+        return paraArray.count;
+    }else {
+        
+        return 4;
+    }
+    
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (tableView == seedTV) {
+        
+        if (indexPath.row == 0) {
         return 45;
     }else {
         return 25;
     }
+        
+    }else {
+        
+        if (indexPath.row == 0) {
+            return 100;
+        }else {
+            return 80;
+        }
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *ID = @"cell";
+    
+    if (tableView == seedTV) {
+        
     FolkSeedCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[FolkSeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    
-    if (indexPath.row == 0) {
+        if (indexPath.row == 0) {
         cell.imageV.image = [UIImage imageNamed:@"民间特产详情_02"];
         cell.brankLa.text = paraArray[indexPath.row];
     }else {
         cell.nameLa.text = paraArray[indexPath.row];
     }
     return cell;
+        
+    }else {
+        
+        EvaluationCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if (!cell) {
+            cell = [[EvaluationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        
+        if (indexPath.row == 0) {
+            cell.imageV.image = [UIImage imageNamed:@"民间特产详情_04"];
+            cell.imageV1.image = [UIImage imageNamed:@"touxiang1.jpg"];
+            cell.evaLa1.text = @"现在的早餐就是这个了，好吃又营养，一上午精力充沛。现在的早餐就是这个了，好吃又营养，一上午精力充沛。现在的早餐就是这个了，好吃又营养，一上午精力充沛。";
+            CGSize evaCG = [ZZStringSize getSizeToString:cell.evaLa1.text forFont:[UIFont systemFontOfSize:10] constrainedToSize:CGSizeMake(ScreenWidth-80, 80) lineBreakMode:NSLineBreakByCharWrapping];
+            cell.evaLa1.frame = CGRectMake(70, 25, ScreenWidth-80, evaCG.height);
+            
+            cell.timeLa.text = @"2015-09-23 11:35:26";
+        }else {
+            cell.imageV2.image = [UIImage imageNamed:@"touxiang1.jpg"];
+            cell.evaLa2.text = @"现在的早餐就是这个了，好吃又营养，一上午精力充沛。现在的早餐就是这个了，好吃又营养，一上午精力充沛。现在的早餐就是这个了，好吃又营养，一上午精力充沛。";
+            CGSize evaCG = [ZZStringSize getSizeToString:cell.evaLa2.text forFont:[UIFont systemFontOfSize:10] constrainedToSize:CGSizeMake(ScreenWidth-80, 80) lineBreakMode:NSLineBreakByCharWrapping];
+            cell.evaLa2.frame = CGRectMake(70, 5, ScreenWidth-80, evaCG.height);
+            
+            cell.timeLa.text = @"2015-09-23 11:35:26";
+        }
+     
+        return cell;
+    }
+    
 }
 
 - (void)shopCarBT {
@@ -176,6 +241,10 @@
     
     BuyOrderVC *Bvc = [[BuyOrderVC alloc] initWithNibName:@"BuyOrderVC" bundle:nil];
     [self.navigationController pushViewController:Bvc animated:YES];
+}
+
+- (void)shopImgBT {
+    
 }
 
 - (void)didReceiveMemoryWarning {
