@@ -9,16 +9,5 @@
 #import "FatherVC.h"
 
 @interface DiscoverVC : FatherVC
-@property (strong, nonatomic) IBOutlet UIView *hotelView;
-@property (strong, nonatomic) IBOutlet UIView *farmView;
-@property (strong, nonatomic) IBOutlet UIView *zhongchouView;
-@property (strong, nonatomic) IBOutlet UIView *activityView;
-@property (strong, nonatomic) IBOutlet UIView *gameView;
-@property (strong, nonatomic) IBOutlet UIView *talkView;
-@property (strong, nonatomic) IBOutlet UIView *personalView;
-@property (strong, nonatomic) IBOutlet UIView *shareView;
-@property (strong, nonatomic) IBOutlet UIView *contactView;
-@property (strong, nonatomic) IBOutlet UIView *knowledgeView;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
